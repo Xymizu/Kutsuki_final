@@ -1,9 +1,12 @@
 package com.example.kutsuki_final;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,22 +14,44 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin2;
     Button btnDontHave;
+    EditText inputUsername, inputPassword, inputEmail;
+    DBHelper dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        // Inisialisasi DBHelper
+        dbHelper = new DBHelper(this);
+
+        // Inisialisasi view
         btnLogin2 = findViewById(R.id.btnLogin2);
         btnDontHave = findViewById(R.id.btnDontHave);
+        inputUsername = findViewById(R.id.usernameLogin);
+        inputPassword = findViewById(R.id.passwordLogin);
 
+        // Login Event
         btnLogin2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
-                startActivity(intent);
+                String username = inputUsername.getText().toString();
+                String password = inputPassword.getText().toString();
+
+                boolean login = dbHelper.checkLogin(username, password);
+
+                if(login){
+                    Toast.makeText(LoginActivity.this, "Login berhasil", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "Username atau password salah", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
         btnDontHave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -34,5 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
         });
-}
+
+
+    }
 }

@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPasswordLogin"
             android:layout_width="308dp"
             android:layout_height="60dp"
             android:fontFamily="@font/gilroy_regular"
@@ -79,7 +80,7 @@
         android:text="Welcome back"
         android:textColor="@color/soft_green"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/usernameLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +105,7 @@
         app:layout_constraintVertical_bias="0.01" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
+        android:id="@+id/usernameLogin"
         android:layout_width="308dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -117,11 +118,11 @@
         app:layout_constraintVertical_bias="0.415">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailLogin"
+            android:id="@+id/inputUsernameLogin"
             android:layout_width="308dp"
             android:layout_height="60dp"
             android:fontFamily="@font/gilroy_regular"
-            android:hint="E-mail" />
+            android:hint="Username" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.kutsuki_final;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         // Inisialisasi view
         btnLogin2 = findViewById(R.id.btnLogin2);
         btnDontHave = findViewById(R.id.btnDontHave);
-        inputUsername = findViewById(R.id.usernameLogin);
-        inputPassword = findViewById(R.id.passwordLogin);
+        inputUsername = findViewById(R.id.inputUsernameLogin);
+        inputPassword = findViewById(R.id.inputPasswordLogin);
 
         // Login Event
         btnLogin2.setOnClickListener(new View.OnClickListener() {
@@ -42,8 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                 boolean login = dbHelper.checkLogin(username, password);
 
                 if(login){
-                    Toast.makeText(LoginActivity.this, "Login berhasil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login berhasil! Halo " + username + "!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, HomepageActivity.class);
+
+                    SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("username", username);
+                    editor.apply();
+
                     startActivity(intent);
 
                 } else {

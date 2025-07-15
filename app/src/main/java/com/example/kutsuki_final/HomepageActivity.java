@@ -1,6 +1,7 @@
 package com.example.kutsuki_final;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class HomepageActivity extends AppCompatActivity {
-    TextView textview13;
+    TextView txtUsername;
     CardView card1,card2,card3,card4,card5,card6;
     ImageView chart;
     @Override
@@ -19,7 +20,6 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        textview13 = findViewById(R.id.textView13);
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
         card3 = findViewById(R.id.card3);
@@ -27,6 +27,12 @@ public class HomepageActivity extends AppCompatActivity {
         card5 = findViewById(R.id.card5);
         card6 = findViewById(R.id.card6);
         chart = findViewById(R.id.chart);
+
+        txtUsername = findViewById(R.id.textView100);
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String username = prefs.getString("username", "Guest");
+        txtUsername.setText(username);
+
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override

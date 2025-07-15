@@ -1,6 +1,5 @@
 package com.example.kutsuki_final;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         btnDontHave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(LoginActivity.this, SigninActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                     startActivity(intent);
                 }
         });
